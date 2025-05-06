@@ -1,0 +1,25 @@
+[project]
+name = "data-quality-pydantic"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Leonardo Souza",email = "leo.armster1994@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "mkdocs (>=1.6.1,<2.0.0)",
+    "mkdocs-mermaid2-plugin (>=1.2.1,<2.0.0)",
+    "mkdocs-material (>=9.6.12,<10.0.0)",
+    "mkdocstrings (>=0.29.1,<0.30.0)",
+    "isort (>=6.0.1,<7.0.0)",
+    "pytest (>=8.3.5,<9.0.0)",
+    "sqlalchemy (>=2.0.40,<3.0.0)",
+    "python-dotenv (>=1.1.0,<2.0.0)",
+    "pandas (>=2.2.3,<3.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
