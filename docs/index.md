@@ -1,6 +1,8 @@
 # Data Quality - Documentação
 
-PAra desenvolver o projeto abaixo utilizaremos a seguinte ETL
+## Fluxo
+
+Para desenvolver o projeto abaixo utilizaremos a seguinte ETL
 
 ```mermaid
 graph TD;
@@ -13,3 +15,7 @@ graph TD;
     F -- Ok --> H[Salvar no DuckDB]
 
 ```
+
+## Contrato de Dados
+
+::: app.schema_crm.schema_zeus

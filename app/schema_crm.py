@@ -1,0 +1,566 @@
+from pandera import DataFrameSchema, Column, Check, Index, MultiIndex
+
+
+def schema_zeus():
+
+    """ Esquema para validar dados de atividades.
+
+        Este esquema define a estrutura esperada e os tipos de dados para um DataFrame
+        contendo informações de atividades. Inclui detalhes sobre a atividade,
+        seu agendamento, localização, pessoal envolvido e status final.
+
+    Colunas:
+        PON (object): Identificador do Ponto de Rede.
+        Atividade (int64): Identificador da atividade.
+        Inicio_Previsto (object): Data de início planejada da atividade.
+        Termino_Atividade (object): Data de conclusão real ou agendada da atividade.
+        TP_Atividade (object): Tipo de atividade.
+        Intervalo (object): Intervalo de tempo associado à atividade.
+        Status (object): Status atual da atividade.
+        Cidade (object): Cidade onde a atividade está ocorrendo.
+        Detalhe_Atividade (object, opcional): Descrição detalhada da atividade.
+        DT_Ag_Execucao (object): Data de execução agendada.
+        Segmento (object): Segmento de clientes.
+        Categoria_Cliente (object): Categoria do cliente.
+        Duracao (object): Duração da atividade.
+        Rede_Acesso (object, opcional): Tipo de rede de acesso.
+        Matricula_Oper (object, opcional): Número de matrícula do operador.
+        Nome_Oper (object): Nome do operador.
+        Recurso (object): Recurso utilizado para a atividade.
+        Status_Final (object): Status final da atividade.
+        Grupo_Info (object): Grupo de informação.
+        Tipo_Servico (object): Tipo de serviço.
+        MACRO_PRODUTO (object): Macro produto.
+        GERENCIA (object): Gerência.
+        CLUSTER_ZEUS (object): Identificador do Cluster Zeus.
+        ORIGEM_ORDENS (object, opcional): Origem das ordens.
+        CARGA_CONF (object): Informação de carga de configuração.
+        MATRICULA_CONF (object, opcional): Número de matrícula do responsável pela configuração.
+        DIA_ATUAL (object): Dia atual.
+        Dia (int64): Dia do mês.
+        Semana (int64): Número da semana no ano.
+        Mes (int64): Número do mês no ano.
+        Ano (int64): Ano.
+        INICIO_SLOT (object): Slot de horário de início.
+        FIM_SLOT (object): Slot de horário de fim.
+        CHEGADA_SLOT (object): Slot de horário de chegada.
+        NUMERO_ORDEM (float64, opcional): Número da ordem.
+        CANAL (object, opcional): Canal de interação.
+        DIV_GER_CIDADE (object, opcional): Divisão de gerência da cidade.
+        DEALER (object, opcional): Informação do revendedor.
+        LOGIN (object, opcional): Identificador de login.
+        NOME_LOGIN (object, opcional): Nome associado ao login.
+        DT_ABERTURA (object, opcional): Data de abertura.
+        BASE (object, opcional): Informação de base.
+        CANALNIVEL1 (object, opcional): Canal de primeiro nível.
+
+    Índice:
+        (int64): Índice autogerado.
+    """
+
+    schema = DataFrameSchema(
+        columns={
+            "PON": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Atividade": Column(
+                dtype="int64",
+                checks=[
+                    Check.greater_than_or_equal_to(
+                        min_value=235589953.0, raise_warning=False, ignore_na=True
+                    ),
+                    Check.less_than_or_equal_to(
+                        max_value=261885560.0, raise_warning=False, ignore_na=True
+                    ),
+                ],
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Inicio_Previsto": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Termino_Atividade": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "TP_Atividade": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Intervalo": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Status": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Cidade": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Detalhe_Atividade": Column(
+                dtype="object",
+                checks=None,
+                nullable=True,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "DT_Ag_Execucao": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Segmento": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Categoria_Cliente": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Duracao": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Rede_Acesso": Column(
+                dtype="object",
+                checks=None,
+                nullable=True,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Matricula_Oper": Column(
+                dtype="object",
+                checks=None,
+                nullable=True,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Nome_Oper": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Recurso": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Status_Final": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Grupo_Info": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Tipo_Servico": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "MACRO_PRODUTO": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "GERENCIA": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "CLUSTER_ZEUS": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "ORIGEM_ORDENS": Column(
+                dtype="object",
+                checks=None,
+                nullable=True,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "CARGA_CONF": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "MATRICULA_CONF": Column(
+                dtype="object",
+                checks=None,
+                nullable=True,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "DIA_ATUAL": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Dia": Column(
+                dtype="int64",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Semana": Column(
+                dtype="int64",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Mes": Column(
+                dtype="int64",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "Ano": Column(
+                dtype="int64",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "INICIO_SLOT": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "FIM_SLOT": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "CHEGADA_SLOT": Column(
+                dtype="object",
+                checks=None,
+                nullable=False,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "NUMERO_ORDEM": Column(
+                dtype="float64",
+                checks=None,
+                nullable=True,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "CANAL": Column(
+                dtype="object",
+                checks=None,
+                nullable=True,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "DIV_GER_CIDADE": Column(
+                dtype="object",
+                checks=None,
+                nullable=True,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "DEALER": Column(
+                dtype="object",
+                checks=None,
+                nullable=True,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "LOGIN": Column(
+                dtype="object",
+                checks=None,
+                nullable=True,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "NOME_LOGIN": Column(
+                dtype="object",
+                checks=None,
+                nullable=True,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "DT_ABERTURA": Column(
+                dtype="object",
+                checks=None,
+                nullable=True,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "BASE": Column(
+                dtype="object",
+                checks=None,
+                nullable=True,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+            "CANALNIVEL1": Column(
+                dtype="object",
+                checks=None,
+                nullable=True,
+                unique=False,
+                coerce=False,
+                required=True,
+                regex=False,
+                description=None,
+                title=None,
+            ),
+        },
+        checks=None,
+        index=Index(
+            dtype="int64",
+                checks=None,
+            nullable=False,
+            coerce=False,
+            name=None,
+            description=None,
+            title=None,
+        ),
+        dtype=None,
+        coerce=True,
+        strict=True,
+        name=None,
+        ordered=False,
+        unique=None,
+        report_duplicates="all",
+        unique_column_names=False,
+        add_missing_columns=False,
+        title=None,
+        description=None,
+    )
+    return schema
