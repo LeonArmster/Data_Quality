@@ -5,6 +5,7 @@ import os
 import pandas as pd
 import pandera as pa
 from schema_crm import schema_zeus
+import duckdb
 
 
 def load_settings():
@@ -38,6 +39,24 @@ def extrair_do_sql(query:str) -> pd.DataFrame:
     return df
 
 
+def load_to_duckdb(df: pd.DataFrame, table_name: str, db_file: str = 'my_duckdb.db'):
+
+    # Conectar ao DuckDB. Se o arquivo não existri, ele será criado.
+    con = duckdb.connect(database=db_file, read_only=False)
+
+    # Registrar o DataFrame como uma tabela Temporária
+    con.register('df_temp', df)
+
+    # Utilizar o SQL para inserir os dados da tabela temporária em uma tabela
+    # Se a tabela já existir, substitui.
+    con.execute(f'CREATE OR REPLACE TABLE {table_name} AS SELECT * FROM df_temp')
+
+    # Fechando a conexão
+    con.close()
+
+
+
+
 if __name__ == "__main__":
     query = """ SELECT * 
                 FROM public."Tb_Zeus"; """
@@ -47,4 +66,5 @@ if __name__ == "__main__":
     with open('schema_crm.py', 'w', encoding='utf-8') as arquivo:
         arquivo.write(schema_crm.to_script())
 
-# poetry run python app/etl.py
+    load_to_duckdb(df=dados, table_name="Tb_Tabela_Teste")
+
